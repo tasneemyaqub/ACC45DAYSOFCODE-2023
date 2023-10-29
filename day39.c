@@ -3,7 +3,7 @@
 void main()
 {
     bool flag = false;      //to use when checking constraints
-    int T, i, X;
+    int T, i, N, j, count;
     printf("Enter number of test cases: ");
     do      //to re input if test not in constraints
     {
@@ -15,23 +15,31 @@ void main()
     } while (flag == false);
     for(i=0; i<T; i++)      //to input t times
     {
-        printf("Enter amount chef needs to pay: ");
-        do      //to re input if amount not in constraints
+        printf("Enter number of spooky days left: ");
+        do      //to re input if days not in constraints
         {
-            scanf("%d", &X);        //input amount
-            if(X>=1 && X<=1000)       //checking constraints for amount
+            scanf("%d", &N);        //input days
+            if(N>=1 && N<=1000)       //checking constraints for amount
                 break;
             else
-                printf("Error! Amount to pay should be from 1 to 1000: ");
+                printf("Error! Number of spooky days should be from 1 to 1000: ");
         } while (flag == false);
-        if(X%5==0)      //to check if amount is divisible by 5
+        if(N>1)     //to check if number of days is more than 1
         {
-            if(X%10==5)     //to check if 5 rupee is required
-                printf("%d\n", ((X/10)+1));
+            if(N<9)     //to check if there is only one tuesday
+                printf("1\n");
             else
-                printf("%d\n", (X/10));
+            {
+                count=0;
+                while(N>1)      //to count number of tuesdays
+                {
+                    count++;
+                    N-=7;
+                }
+                printf("%d\n", count);
+            }
         }
         else
-            printf("-1\n");
+            printf("0\n");
     }
 }
